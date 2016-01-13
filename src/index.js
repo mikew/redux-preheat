@@ -1,2 +1,2 @@
 export preheat from './preheat'
-export getFetchDataPromise from './getFetchDataPromise'
+export getPreheatPromise from './getPreheatPromise'

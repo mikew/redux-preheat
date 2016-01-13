@@ -3,7 +3,7 @@ import { PropTypes } from 'react'
 export default function preheat (clientAction, serverAction) {
   return function (component) {
     injectComponentDidMount(clientAction)(component)
-    addToFetchData(serverAction || clientAction)(component)
+    addToPreheat(serverAction || clientAction)(component)
     return component
   }
 }
@@ -32,7 +32,7 @@ function injectComponentDidMount (action) {
   }
 }
 
-function addToFetchData (action) {
+function addToPreheat (action) {
   return function (component) {
     component.preheatList = (component.preheatList || []).concat(action)
   }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { getFetchDataPromise } from '../../src'
+import { getPreheatPromise } from '../../src'
 import { renderToString } from 'react-dom/server'
 import { Router, match, RoutingContext } from 'react-router'
 import { Provider } from 'react-redux'
@@ -21,7 +21,7 @@ export default function renderWithReact (req, res) {
       let components = renderProps.components
       let actionArg = renderProps
 
-      getFetchDataPromise(components, store, actionArg).then(function () {
+      getPreheatPromise(components, store, actionArg).then(function () {
         const content = renderToString(
           <Provider store={store}>
             <RoutingContext {...renderProps} />
