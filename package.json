@@ -1,7 +1,11 @@
 {
   "name": "redux-preheat",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A helpful decorator to run Redux actions in universal apps.",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/mikew/redux-preheat.git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
