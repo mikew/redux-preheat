@@ -52,6 +52,10 @@ app.get('/*', function (req, res) {
 
 ### `preheat(clientAction, serverAction = null)(Component)`
 
+> **Note:** You will want to group `@preheat` decorators and place them
+> as close to the component as possible (aka after any `@connect` or
+> other decorators).
+
 ```javascript
 import { preheat } from 'redux-preheat'
 import * as actions from './actions'
