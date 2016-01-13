@@ -1,4 +1,4 @@
-export default function getPreheatPromise (components, store, actionArg) {
+export default function getPreheatPromise (store, components = [], actionArg = null) {
   let promises = []
 
   components.forEach(function (component) {

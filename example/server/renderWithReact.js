@@ -21,7 +21,7 @@ export default function renderWithReact (req, res) {
       let components = renderProps.components
       let actionArg = renderProps
 
-      getPreheatPromise(components, store, actionArg).then(function () {
+      getPreheatPromise(store, components, actionArg).then(function () {
         const content = renderToString(
           <Provider store={store}>
             <RoutingContext {...renderProps} />
