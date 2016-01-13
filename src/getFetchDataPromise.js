@@ -1,22 +1,22 @@
 export default function getFetchDataPromise (components, store, actionArg) {
-  let allPrefetchPromises = []
+  let promises = []
 
   components.forEach(function (component) {
-    if (!component.fetchDataList) {
+    if (!component.preheatList) {
       return
     }
 
-    component.fetchDataList.forEach(function (action) {
+    component.preheatList.forEach(function (action) {
       let p = store.dispatch(action(actionArg))
       // TODO Handle returning a function for callbacks?
       if (!p || !p.then) {
         return
       }
-      allPrefetchPromises.push(p)
+      promises.push(p)
     })
   })
 
-  return Promise.all(allPrefetchPromises).then(function () {
+  return Promise.all(promises).then(function () {
     return store
   })
 }

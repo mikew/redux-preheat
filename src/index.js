@@ -1,2 +1,2 @@
-export fetchData from './fetchData'
+export preheat from './preheat'
 export getFetchDataPromise from './getFetchDataPromise'

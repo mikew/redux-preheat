@@ -1,5 +1,5 @@
 import React from 'react'
-import { fetchData } from '../../../../src'
+import { preheat } from '../../../../src'
 
 import { connect } from 'react-redux'
 import * as actions from '../../../server/todos/actions'
@@ -20,7 +20,7 @@ class Todo extends React.Component {
 }
 
 @connect(mapStateToProps, actions)
-@fetchData(actions.fetchData)
+@preheat(actions.preheat)
 export default class Todos extends React.Component {
   render () {
     return (

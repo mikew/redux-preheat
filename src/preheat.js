@@ -1,6 +1,6 @@
 import { PropTypes } from 'react'
 
-export default function fetchData (clientAction, serverAction) {
+export default function preheat (clientAction, serverAction) {
   return function (component) {
     injectComponentDidMount(clientAction)(component)
     addToFetchData(serverAction || clientAction)(component)
@@ -34,6 +34,6 @@ function injectComponentDidMount (action) {
 
 function addToFetchData (action) {
   return function (component) {
-    component.fetchDataList = (component.fetchDataList || []).concat(action)
+    component.preheatList = (component.preheatList || []).concat(action)
   }
 }

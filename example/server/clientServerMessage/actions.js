@@ -7,7 +7,7 @@ export function setMessage (message) {
   }
 }
 
-export function fetchDataClient (component) {
+export function preheatClient (component) {
   return function (dispatch, getState) {
     if (getState().clientServerMessage !== '') {
       return
@@ -17,6 +17,6 @@ export function fetchDataClient (component) {
   }
 }
 
-export function fetchDataServer (component) {
+export function preheatServer (component) {
   return setMessage('This component was rendered on the server')
 }

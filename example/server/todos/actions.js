@@ -21,7 +21,7 @@ export function addTodo (obj) {
   }
 }
 
-export function fetchData () {
+export function preheat () {
   return function (dispatch, getState) {
     if (getState().todos.list.length !== 0) {
       return

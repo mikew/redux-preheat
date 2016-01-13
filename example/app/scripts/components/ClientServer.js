@@ -1,5 +1,5 @@
 import React from 'react'
-import { fetchData } from '../../../../src'
+import { preheat } from '../../../../src'
 
 import { connect } from 'react-redux'
 import * as actions from '../../../server/clientServerMessage/actions'
@@ -11,7 +11,7 @@ function mapStateToProps (state) {
 }
 
 @connect(mapStateToProps, actions)
-@fetchData(actions.fetchDataClient, actions.fetchDataServer)
+@preheat(actions.preheatClient, actions.preheatServer)
 export default class ClientServer extends React.Component {
   render () {
     return (
