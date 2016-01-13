@@ -7,6 +7,7 @@ export default class App extends React.Component {
       <div>
         <Link to='/'>Home</Link>
         <Link to='/todos'>Todos</Link>
+        <Link to='/silly'>Silly Route</Link>
         {this.props.children}
       </div>
     )
