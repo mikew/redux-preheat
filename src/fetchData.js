@@ -1,9 +1,9 @@
 import { PropTypes } from 'react'
 
-export default function fetchData (getter) {
+export default function fetchData (clientAction, serverAction) {
   return function (component) {
-    injectComponentDidMount(getter)(component)
-    addToFetchData(getter)(component)
+    injectComponentDidMount(clientAction)(component)
+    addToFetchData(serverAction || clientAction)(component)
     return component
   }
 }
@@ -14,7 +14,7 @@ let storeShape = PropTypes.shape({
   getState: PropTypes.func.isRequired,
 })
 
-function injectComponentDidMount (getter) {
+function injectComponentDidMount (action) {
   return function (component) {
     let contextTypes = component.contextTypes || {}
     contextTypes.store = contextTypes.store || storeShape
@@ -27,13 +27,13 @@ function injectComponentDidMount (getter) {
       }
 
       let store = this.props.store || this.context.store
-      store.dispatch(getter(this))
+      store.dispatch(action(this))
     }
   }
 }
 
-function addToFetchData (getter) {
+function addToFetchData (action) {
   return function (component) {
-    component.fetchDataList = (component.fetchDataList || []).concat(getter)
+    component.fetchDataList = (component.fetchDataList || []).concat(action)
   }
 }
