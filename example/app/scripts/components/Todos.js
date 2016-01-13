@@ -26,12 +26,25 @@ export default class Todos extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <input ref="todoInput" />
-          <button
-              onClick={this.handleSubmit}
-              className="btn btn-primary">
-            Add Todo
-          </button>
+          <div className="input-group input-group-lg">
+            <input
+                ref="todoInput"
+                type="text"
+                className="form-control"
+                placeholder="Todo ..."
+                />
+            <span className="input-group-btn">
+              <button
+                  onClick={this.handleSubmit}
+                  className="btn btn-primary">
+                Add Todo
+              </button>
+            </span>
+          </div>
+          <span className="help-block">
+            Apologies that this is not a full-fledged TODO app with
+            persistence.
+          </span>
         </form>
         {
           this.props.todos.map((todo) => {
