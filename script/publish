@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+babel "src/" --out-dir "." --stage 0 --no-comments
+npm publish
