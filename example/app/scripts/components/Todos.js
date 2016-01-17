@@ -1,5 +1,5 @@
 import React from 'react'
-import { preheat } from '../../../../src'
+import { preheat } from 'redux-preheat'
 
 import { connect } from 'react-redux'
 import * as actions from '../../../server/todos/actions'

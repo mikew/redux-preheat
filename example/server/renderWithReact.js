@@ -1,5 +1,5 @@
 import React from 'react'
-import { getPreheatPromise } from '../../src'
+import { getPreheatPromise } from 'redux-preheat'
 import { renderToString } from 'react-dom/server'
 import { Router, match, RoutingContext } from 'react-router'
 import { Provider } from 'react-redux'
