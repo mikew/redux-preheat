@@ -13,10 +13,34 @@ your existing Redux actions.
 
 ## How?
 
-There are two parts to this package: A promise that will call redux
-actions and a decorator to bind those actions to a component.
+### `preheat(clientAction, serverAction = null)(Component)`
+
+The decorator for your components. If no `serverAction` is given then
+`clientAction` will run on both sides.
+
+> **Note:** You will want to group `@preheat` decorators and place them
+> as close to the component as possible (aka after any `@connect` or
+> other decorators).
+
+```javascript
+import { preheat } from 'redux-preheat'
+import * as actions from './actions'
+
+// `actions.fetchData` will be called on either the client or server.
+@preheat(actions.fetchData)
+// `actions.fetchDataClient` will be called on the client.
+// `actions.fetchDataServer` will be called on the server.
+@preheat(actions.fetchDataClient, actions.fetchDataServer)
+class MyComponent extends React.Component {
+  render () {
+    // ...
+  }
+}
+```
 
 ### `getPreheatPromise(store, components = [], actionArg = null)`
+
+The promise used on the server. This example uses `react-router`.
 
 ```javascript
 import { getPreheatPromise } from 'redux-preheat'
@@ -25,7 +49,7 @@ app.get('/*', function (req, res) {
   match({ routes, location: req.url }, function (error, redirectLocation, renderProps) {
     if (renderProps) {
       // We have to pass the store to `getPreheatPromise`.
-      let store = configureStore({})
+      let store = createStore({})
 
       // Get the list of components for the current route.
       let components = renderProps.components
@@ -48,28 +72,6 @@ app.get('/*', function (req, res) {
     }
   })
 })
-```
-
-### `preheat(clientAction, serverAction = null)(Component)`
-
-> **Note:** You will want to group `@preheat` decorators and place them
-> as close to the component as possible (aka after any `@connect` or
-> other decorators).
-
-```javascript
-import { preheat } from 'redux-preheat'
-import * as actions from './actions'
-
-// `actions.fetchData` will be called on either the client or server.
-@preheat(actions.fetchData)
-// `actions.fetchDataClient` will be called on the client.
-// `actions.fetchDataServer` will be called on the server.
-@preheat(actions.fetchDataClient, actions.fetchDataServer)
-class MyComponent extends React.Component {
-  render () {
-    // ...
-  }
-}
 ```
 
 ## Example
