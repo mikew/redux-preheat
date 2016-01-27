@@ -16,13 +16,11 @@ export default function getPreheatPromise (store, components = [], actionArg = n
 
       // Handle redux-promise-middleware
       if (result.payload && isPromise(result.payload.promise)) {
-        console.log('detected reduxPromiseMiddleware')
         p = result.payload.promise
 
       // Handle redux-promise
       // Handle redux-thunk
       } else if (isPromise(result)) {
-        console.log('detected thunk')
         p = result
       }
 
