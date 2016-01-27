@@ -1,3 +1,7 @@
+function isPromise (p) {
+  return p && typeof p.then === 'function'
+}
+
 export default function getPreheatPromise (store, components = [], actionArg = null) {
   let promises = []
 
@@ -7,9 +11,22 @@ export default function getPreheatPromise (store, components = [], actionArg = n
     }
 
     component.preheatList.forEach(function (action) {
-      let p = store.dispatch(action(actionArg))
-      // TODO Handle returning a function for callbacks?
-      if (!p || !p.then) {
+      const result = store.dispatch(action(actionArg))
+      let p
+
+      // Handle redux-promise-middleware
+      if (result.payload && isPromise(result.payload.promise)) {
+        console.log('detected reduxPromiseMiddleware')
+        p = result.payload.promise
+
+      // Handle redux-promise
+      // Handle redux-thunk
+      } else if (isPromise(result)) {
+        console.log('detected thunk')
+        p = result
+      }
+
+      if (!isPromise(p)) {
         return
       }
       promises.push(p)
